@@ -172,13 +172,13 @@ while True:
 
     print("\n\t\t\t__________________________________")
     print("\n\t\t\t Please select an option\n")
-    print("\t\t\t 1. Check Balance")
-    print("\t\t\t 2. Balance Transfer")
-    print("\t\t\t 3. Deposit Money")
-    print("\t\t\t 4. Withdraw Money")
-    print("\t\t\t 5. Check Credit Score")
-    print("\t\t\t 6. Log-out")
-    print("\t\t\t 7. Exit")
+    print("\t\t\t [1]. Check Balance")
+    print("\t\t\t [2]. Balance Transfer")
+    print("\t\t\t [3]. Deposit Money")
+    print("\t\t\t [4]. Withdraw Money")
+    print("\t\t\t [5]. Check Credit Score")
+    print("\t\t\t [6]. Log-out")
+    print("\t\t\t [7]. Exit")
     print("\t\t\t__________________________________")
 
 
