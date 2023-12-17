@@ -81,7 +81,7 @@ def login_check(email, pin):
 # Function to check and display account balance
 def check_balance(email):
 
-    print(f"Your account balance is: £ {user_accounts[email]['balance']}")
+    print(f"Your account balance is: £ {round(user_accounts[email]['balance'], 2)}")
 
 
 # Function to check and display credit score
@@ -115,7 +115,7 @@ def transfer_check():
 
         while True:
 
-            transfer_email = input("\nPlease enter email you wish to make a balance transfer: ")
+            transfer_email = input("\nPlease enter email you wish to make a balance transfer: ").strip()
 
             if transfer_email in user_accounts.keys() and transfer_email != email:
 
@@ -130,7 +130,7 @@ def transfer_check():
 
             try:
 
-                amount = math.floor(float(input("\nPlease enter amount you wish to transfer: £")) * 100) / 100
+                amount = math.floor(float(input("\nPlease enter amount you wish to transfer: £ ")) * 100) / 100
 
                 if is_positive(amount):
 
@@ -199,7 +199,7 @@ def deposit(email):
 
         try:
 
-            amount = math.floor(float(input("\nPlease enter amount you wish to deposit: £")) * 100) / 100
+            amount = math.floor(float(input("\nPlease enter amount you wish to deposit: £ ")) * 100) / 100
 
             if is_positive(amount):
 
@@ -224,7 +224,7 @@ def withdrawal(email, pin):
 
         try:
 
-            amount = int(float(input("\nPlease enter the amount you wish to withdraw(Can only withdraw integers): £")))
+            amount = int(float(input("\nPlease enter the amount you wish to withdraw(Can only withdraw integers): £ ")))
 
             if is_positive(amount):
 
