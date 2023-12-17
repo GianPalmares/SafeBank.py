@@ -17,7 +17,7 @@ user_accounts = {"gian@yahoo.com": {"pin": "2287", "balance": 1000, "credit_scor
 split_email = lambda email : email.split("@")[0].capitalize()
 
 # Lambda function for invalid choice message
-invalid_choice_message = lambda: print("Invalid choice! Please select a number from 1 to 7.")
+invalid_choice_message = lambda : print("Invalid choice! Please select a number from 1 to 7.")
 
 
 
@@ -149,6 +149,8 @@ def transfer_check():
 # Function to perform balance transfer
 def balance_transfer(email, transfer_email, amount, pin):
 
+    attempts = 3
+
     if amount <= user_accounts[email]["balance"]:
 
         while True:
@@ -165,8 +167,17 @@ def balance_transfer(email, transfer_email, amount, pin):
                 break
 
             else:
-                print("Invalid PIN number! Please try again")
-                continue
+
+                if attempts == 0:
+
+                    print("You have entered an incorrect PIN number too many times. Logging out!")
+                    return login()
+
+                else:
+
+                    print(f"Invalid PIN number! Please try again, you have {attempts} attempts left.")
+                    attempts -= 1
+                    continue
 
     else:
         print("Insufficient funds! Please make a deposit.")
@@ -219,7 +230,9 @@ def deposit(email):
 
 # Function for user withdrawal
 def withdrawal(email, pin):
-    
+
+    attempts = 3
+
     while True:
 
         try:
@@ -235,20 +248,32 @@ def withdrawal(email, pin):
 
                 else:
 
-                    confirm_pin = input("\nPlease enter your 4-digit PIN number to confirm withdrawal: ").strip()
+                    while True:
 
-                    if confirm_pin == pin:
+                        confirm_pin = input("\nPlease enter your 4-digit PIN number to confirm withdrawal: ").strip()
 
-                        user_accounts[email]["balance"] -= amount
-                        username = split_email(email)
+                        if confirm_pin == pin:
 
-                        print(f"You have successfully withdrawn £ {amount}. Thank you, {username}.")
-                        break
+                            user_accounts[email]["balance"] -= amount
+                            username = split_email(email)
 
-                    else:
+                            print(f"You have successfully withdrawn £ {amount}. Thank you, {username}.")
+                            break
 
-                        print("Invalid PIN number! Please try again")
-                        continue
+                        else:
+
+                            if attempts == 0:
+
+                                print("You have entered an incorrect PIN number too many times. Logging out!")
+                                return login()
+
+                            else:
+
+                                print(f"Invalid PIN number! Please try again, you have {attempts} attempts left.")
+                                attempts -= 1
+                                continue
+
+                    break
 
             continue
 
